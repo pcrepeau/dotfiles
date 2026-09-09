@@ -1,0 +1,52 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]; then
+  PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+if [ -d ~/.bashrc.d ]; then
+  for rc in ~/.bashrc.d/*; do
+    if [ -f "$rc" ]; then
+      . "$rc"
+    fi
+  done
+fi
+unset rc
+#[ ! -z "$PS1" ] && exec /usr/bin/zsh
+
+#. "$HOME/.local/share/../bin/env"
+export PATH="$HOME/.local/bin:$PATH"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+export PATH="/home/pcrepeau/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
+# terraform
+alias tp='terraform plan'
+alias ta='terrafomr apply'
+
+# kubectl
+alias k='kubectl'
+#source /etc/bash_completion
+source <(kubectl completion bash)
+#complete -o default -F __start_kubectl k
+
+alias kgp='kubectl get pods'
+alias kc='kubectx'
+alias kn='kubens'
+
+alias kcs='kubectl config user-context admin@homelab-staging'
+alias kcp='kbecrtl config use-context admin@homelab-production'
+export EDITOR="nvim"
+export VISUAL="nvim"
+eval "$(starship init bash)"

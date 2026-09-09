@@ -1,0 +1,197 @@
+# Powerful but minimal zsh configuration
+# Author: Radley E. Sidwell-Lewis
+# GitHub: https://www.github.com/radleylewis/zsh
+#
+# Uses:
+#   Plugins:      fast-syntax-highlighting, zsh-autosuggestions,
+#                 zsh-history-substring-search, zsh-vi-mode
+#   Prompt:       starship
+#   Navigation:   zoxide, fzf, fd
+#   CLI tools:    eza, bat, nvim, ripgrep
+#   Node:         nvm
+
+# =========================================================
+# path
+# =========================================================
+
+export PATH="$HOME/.local/bin:$PATH"
+
+# =========================================================
+# Directories
+# =========================================================
+export REPOS="$HOME/Repos"
+export GITUSER="pcrepeau"
+export GHREPOS="$REPOS/github.com/$GITUSER"
+export DOTFILES="$GHREPOS/dotfiles"
+export LAB="$GHREPOS/lab"
+export SCRIPTS="$DOTFILES/scripts"
+export ZETTELKASTEN="$GHREPOS/Zettelkasten"
+# =========================================================
+# History
+# =========================================================
+
+HISTFILE=~/.zsh_history
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+
+# =========================================================
+# Shell behaviour
+# =========================================================
+
+setopt AUTOCD
+setopt NOBEEP
+setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
+
+# =========================================================
+# Smart directory navigation & lf
+# =========================================================
+
+#LF_ICONS=$(cat ~/.config/lf/icons | tr '\n' ':')
+#export LF_ICONS
+
+# Initialize zoxide
+eval "$(zoxide init zsh)"
+
+# =========================================================
+# Completion
+# =========================================================
+
+# Load completion system
+autoload -Uz compinit
+
+# Initialize completion with cached metadata file
+compinit -d "~dotfiles/zcompdump"
+
+# Enable interactive completion menu selection
+zstyle ':completion:*' menu select
+
+# Make completion case-insensitive
+# Example: "doc" can complete to "Documents"
+zstyle ':completion:*' matcher-list 'm:{a-z}={A-Za-z}'  # lowercase input matches upper and lower
+
+# =========================================================
+# Aliases
+# =========================================================
+
+alias v=nvim
+alias clip='pbcopy'
+
+alias scripts='cd $SCRIPTS'
+alias c="clear"
+
+# Repos
+alias lab='cd $LAB'
+alias dot='cd $GHREPOS/dotfiles'
+alias repos='cd $REPOS'
+alias ghrepos='cd $GHREPOS'
+alias gr='ghrepos'
+
+# Homelab
+alias homelab='cd $GHREPOS/homelab/'
+alias hl='homelab'
+alias hlp='cd $GHREPOS/homelab-private/'
+alias hlps='cd $GHREPOS/homelab-private-staging/'
+alias hlpp='cd $GHREPOS/homelab-private-production/'
+
+# ls
+alias ls='ls --color=auto'
+#alias ls='ls -lathr'
+#alias la='exa -laghm@ --all --icons --git --color=always'
+
+# finds all files recursively and sorts by last modification, ignore hidden files.
+alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
+
+alias t='tmux'
+alias e='exit'
+
+# Azure
+alias sub='az account set -s'
+
+# Git
+alias gp='git pull'
+alias gs='git status'
+alias lg='lazygit'
+
+# Zettlekasten
+alias in="cd \$ZETTELKASTEN/0\ Inbox/"
+alias cdzk="cd \$ZETTELKASTEN"
+
+# Kubernetes
+#alias k='kubectl'
+
+#alias kgp='kubectl get pods'
+#alias kc='kubectx'
+#alias kn='kubens'
+
+alias fgk='flux get kustomizations'
+
+# Devpod
+alias ds='devpod ssh'
+
+# =========================================================
+# Fuzzy finder
+# =========================================================
+
+# macOS / Homebrew (Apple Silicon)
+#if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
+#  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+#  source /opt/homebrew/opt/fzf/shell/completion.zsh
+#fi
+
+# macOS / Homebrew (Intel)
+#if [[ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]]; then
+#  source /usr/local/opt/fzf/shell/key-bindings.zsh
+#  source /usr/local/opt/fzf/shell/completion.zsh
+#fi
+
+# Arch
+#if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
+#  source /usr/share/fzf/key-bindings.zsh
+#  source /usr/share/fzf/completion.zsh
+#fi
+
+# Ubuntu
+#if [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
+#  source /usr/share/doc/fzf/examples/key-bindings.zsh
+#  source /usr/share/doc/fzf/examples/completion.zsh
+#fi
+
+# =========================================================
+# Modular Config Files
+# =========================================================
+
+# fzf configuration
+source "$HOME/Repos/github.com/pcrepeau/dotfiles/fzf.zsh"
+
+# Aliases
+source "$HOME/Repos/github.com/pcrepeau/dotfiles/aliases.zsh"
+
+# Custom keybindings
+source "$HOME/Repos/github.com/pcrepeau/dotfiles/bindings.zsh"
+
+# Plugins and plugin manager
+source "$HOME/Repos/github.com/pcrepeau/dotfiles/plugins.zsh"
+
+# Prompt/theme
+source "$HOME/Repos/github.com/pcrepeau/dotfiles/prompt.zsh"
+
+export EDITOR="nvim"
+export VISUAL="nvim"
+# =========================================================
+# Node / NVM
+# =========================================================
+
+#export NVM_DIR="$HOME/.nvm"
+#[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"
+#[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion"
+
+### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
+#export PATH="/home/pcrepeau/.rd/bin:$PATH"
+### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
