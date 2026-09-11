@@ -6,6 +6,6 @@ if ! command -v chezmoi >/dev/null; then
   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply https://github.com/pcrepeau/dotfiles.git
 fi
 
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | sh --yes
 
 exit 0
