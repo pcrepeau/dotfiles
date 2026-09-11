@@ -84,7 +84,7 @@
 
 /* The whole bar */
 #waybar {
-    background: @bg;
+    background: transparent;
     color: @light;
     font-family: "JetBrainsMono Nerd Font","Cantarell", "Font Awesome 5 Pro";
     font-size: 12pt;
@@ -261,32 +261,32 @@
 
 /* And now modules themselves in their respective order */
 #clock.time {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #clock.date {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_faded;
 }
 
 #custom-scratchpad-indicator {
-    background: @bluetint;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #language {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #custom-kdeconnect {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #custom-pacman {
-    background: @bluetint;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #idle_inhibitor {
-    background: @font_dark_alternative;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #custom-playerctl {
@@ -315,7 +315,7 @@
     opacity: 1;
 }
 #custom-cpugovernor {
-    background-color: @font_dark_alternative;
+    background-color: transparent;
     color: @font_gruv_normal;
 }
 #custom-cpugovernor.perf {
@@ -332,7 +332,6 @@
 }
 #temperature {
     color: @font_gruv_normal;
-    padding-right: 0em;
 }
 #temperature.critical {
     background:  @critical;
@@ -342,7 +341,7 @@
     padding-left: 0em;    
 }
 #pulseaudio {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #pulseaudio.muted {
@@ -352,15 +351,15 @@
     /* moved to config */
 }
 #bluetooth {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #network {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_normal;
 }
 #tray {
-    background: @bg;
+    background: transparent;
     color: @font_gruv_normal;
 }
 
@@ -395,9 +394,24 @@
     padding: 0 0.6em;
 }
 #custom-network_traffic {
-  color: @font_gruv_normal
+  background: transparent;
+  color: @font_gruv_normal;
+  padding-left: 0;
 }
 #power-profiles-daemon {
+  background: transparent;
   padding: 1 8px;
   color: @font_gruv_normal;
+}
+#power-profiles-daemon.performance {
+    background-color: transparent;
+    color: #f53c3c;
+}
+#power-profiles-daemon.balanced {
+    background-color: transparent;
+    color: @font_gruv_normal;
+}
+#power-profiles-daemon.power-saver {
+    background-color: transparent;
+    color: #2ecc71;
 }
