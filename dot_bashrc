@@ -28,9 +28,6 @@ unset rc
 #. "$HOME/.local/share/../bin/env"
 export PATH="$HOME/.local/bin:$PATH"
 
-### MANAGED BY RANCHER DESKTOP START (DO NOT EDIT)
-export PATH="/home/pcrepeau/.rd/bin:$PATH"
-### MANAGED BY RANCHER DESKTOP END (DO NOT EDIT)
 # terraform
 alias tp='terraform plan'
 alias ta='terrafomr apply'
@@ -50,3 +47,7 @@ alias kcp='kbecrtl config use-context admin@homelab-production'
 export EDITOR="nvim"
 export VISUAL="nvim"
 eval "$(starship init bash)"
+
+set -i vi
+
+echo 'eval "$(~/.local/bin/mise activate bash)"'
