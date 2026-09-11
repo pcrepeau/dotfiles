@@ -48,6 +48,6 @@ export EDITOR="nvim"
 export VISUAL="nvim"
 eval "$(starship init bash)"
 
-set -i vi
+set -o vi
 
 echo 'eval "$(~/.local/bin/mise activate bash)"'
