@@ -50,4 +50,4 @@ eval "$(starship init bash)"
 
 set -o vi
 
-echo 'eval "$(~/.local/bin/mise activate bash)"'
+eval "$(~/.local/bin/mise activate bash)"
