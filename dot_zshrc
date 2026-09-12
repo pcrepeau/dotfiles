@@ -67,7 +67,6 @@ if command -v flux > /dev/null ; then
   source <(flux completion zsh)
 fi
 
-
 if command -v mise > /dev/null ; then
   source <(mise completion zsh)
 fi
