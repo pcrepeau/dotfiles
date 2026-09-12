@@ -1,4 +1,25 @@
 # =========================================================
+# SSH
+# =========================================================
+
+
+# Using GPG + YubiKey for ssh.
+# Don't execute when in a dev container
+
+if [[ -z "$REMOTE_CONTAINERS" && -z "$CODESPACES" && -z "$DEVCONTAINER_TYPE" ]]; then
+  export GPG_TTY="$(tty)"
+  unset SSH_AGENT_PID
+
+  if [ "{gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+  fi
+
+  gpgconf --launch gpg-agent
+  gpg-connect-agent updatestartuptty /by > dev/null 2>&1
+fi
+
+
+# =========================================================
 # History
 # =========================================================
 
@@ -6,6 +27,34 @@
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=100000
 SAVEHIST=100000
+
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+
+
+# =========================================================
+# Shell behaviour
+# =========================================================
+
+setopt AUTOCD
+setopt NOBEEP
+setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
+
+
+# =========================================================
+# Directories
+# =========================================================
+export REPOS="$HOME/Repos"
+export GITUSER="pcrepeau"
+export GHREPOS="$REPOS/github.com/$GITUSER"
+export DOTFILES="$GHREPOS/dotfiles"
+export LAB="$GHREPOS/lab"
+export SCRIPTS="$DOTFILES/scripts"
+export ZETTELKASTEN="$GHREPOS/Zettelkasten"
 
 
 # =========================================================
@@ -37,6 +86,10 @@ export KEYTIMEOUT=1 # make switching between modes faster
 if command -v nvim > /dev/null ; then
   export EDITOR="nvim"
   export VISUAL="nvim"
+fi
+
+if command -v brave > /dev/null ; then
+  export BROWSER="brave"
 fi
 
 export LANG="en_US.UTF-8"
