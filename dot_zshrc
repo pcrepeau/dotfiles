@@ -1,11 +1,11 @@
 # Powerful but minimal zsh configuration
-# Author: Radley E. Sidwell-Lewis
-# GitHub: https://www.github.com/radleylewis/zsh
+# Author: Peter Crepeau
+# GitHub: https://www.github.com/pcrepeau/dotfiles/
 #
 # Uses:
 #   Plugins:      fast-syntax-highlighting, zsh-autosuggestions,
 #                 zsh-history-substring-search, zsh-vi-mode
-#   Prompt:       starship
+#   Prompt:       pure
 #   Navigation:   zoxide, fzf, fd
 #   CLI tools:    eza, bat, nvim, ripgrep
 #   Node:         nvm
@@ -143,12 +143,6 @@ alias ds='devpod ssh'
 #if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
 #  source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
 #  source /opt/homebrew/opt/fzf/shell/completion.zsh
-#fi
-
-# macOS / Homebrew (Intel)
-#if [[ -f /usr/local/opt/fzf/shell/key-bindings.zsh ]]; then
-#  source /usr/local/opt/fzf/shell/key-bindings.zsh
-#  source /usr/local/opt/fzf/shell/completion.zsh
 #fi
 
 # Arch
