@@ -1,0 +1,145 @@
+# =========================================================
+# History
+# =========================================================
+
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+
+# =========================================================
+# Prompt
+# =========================================================
+
+
+PURE_GIT_PULL=0
+
+if [[ "$OSTYPE" == darwin* ]]; then
+  fpath+=("$(brew --prefix)/share/zsh/site-functions")
+else
+  fpath+=($HOME/.zsh/pure)
+fi
+autoload -U promptinit; promptinit
+
+prompt pure
+
+
+# enable zsh vi-mode
+bindkey -v
+export KEYTIMEOUT=1 # make switching between modes faster
+
+# =========================================================
+# Environment Variables
+# =========================================================
+
+
+if command -v nvim > /dev/null ; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+fi
+
+export LANG="en_US.UTF-8"
+
+
+# =========================================================
+# Mise
+# =========================================================
+
+
+if command -v mise > /dev/null ; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
+fi
+
+
+# =========================================================
+# Completion
+# =========================================================
+
+
+autoload -Uz compinit && compinit
+
+if command -v fzf > /dev/null ; then
+  source <(fzf --zsh)
+fi
+
+if command -v flux > /dev/null ; then
+  source <(flux completion zsh)
+fi
+
+
+if command -v mise > /dev/null ; then
+  source <(mise completion zsh)
+fi
+
+
+# =========================================================
+# Aliases
+# =========================================================
+
+alias v=nvim
+alias clip='pbcopy'
+
+alias scripts='cd $SCRIPTS'
+alias c="clear"
+
+# Repos
+alias lab='cd $LAB'
+alias dot='cd $GHREPOS/dotfiles'
+alias repos='cd $REPOS'
+alias ghrepos='cd $GHREPOS'
+alias gr='ghrepos'
+
+# Homelab
+alias homelab='cd $GHREPOS/homelab/'
+alias hl='homelab'
+alias hlp='cd $GHREPOS/homelab-private/'
+alias hlps='cd $GHREPOS/homelab-private-staging/'
+alias hlpp='cd $GHREPOS/homelab-private-production/'
+
+# ls
+alias ls='ls --color=auto'
+#alias ls='ls -lathr'
+#alias la='exa -laghm@ --all --icons --git --color=always'
+
+# finds all files recursively and sorts by last modification, ignore hidden files.
+alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
+
+alias t='tmux'
+alias e='exit'
+
+# Azure
+alias sub='az account set -s'
+
+# Git
+alias gp='git pull'
+alias gs='git status'
+alias lg='lazygit'
+
+# Zettlekasten
+alias in="cd \$ZETTELKASTEN/0\ Inbox/"
+alias cdzk="cd \$ZETTELKASTEN"
+
+# Kubernetes
+#alias k='kubectl'
+
+#alias kgp='kubectl get pods'
+#alias kc='kubectx'
+#alias kn='kubens'
+
+alias fgk='flux get kustomizations'
+
+# Devpod
+alias ds='devpod ssh'
+
+if command -v bat > /dev/null ; then
+  alias cat="bat"
+fi
+
+if command -v lsd > /dev/null ; then
+  alias ls="lsd"
+  alias ll="ls -lgh"
+  alias la='ls -lathr'
+  alias lla='ls -lgha'
+  alias lt='ls --tree'
+fi
