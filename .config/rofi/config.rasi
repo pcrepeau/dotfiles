@@ -1,9 +1,0 @@
-configuration {
-display-drun: "Applications";
-drun-display-format: "{name}";
-sorting-method: "fzf";
-}
-
-//@theme "/home/pcrepeau/.local/share/rofi/themes/rounded-teal-dark.rasi"
-
-@theme "/home/pcrepeau/.local/share/rofi/themes/rounded-orange-dark.rasi"
