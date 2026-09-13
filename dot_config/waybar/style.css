@@ -117,7 +117,7 @@ window#waybar.chromium {
 #battery.plugged {
   /*color: rgb(100, 255, 100);*/
   color: #94d2db;
-  background-color: #26a65b;
+  background-color: transparent;
 }
 
 @keyframes blink {
