@@ -21,8 +21,8 @@ if [ ! -d "$HOME/.zsh/pure" ]; then
 fi
 
 if command -v alacritty >/dev/null; then
-  mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
-  git clone https://github.com/alacritty/alacritty-theme "XDG_CONFIG_HOME"/alacritty/themes
+  #mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
+  git clone https://github.com/alacritty/alacritty-theme "$XDG_CONFIG_HOME"/alacritty/themes
 fi
 
 exit 0
