@@ -6,17 +6,17 @@
 # Using GPG + YubiKey for ssh.
 # Don't execute when in a dev container
 
-if [[ -z "$REMOTE_CONTAINERS" && -z "$CODESPACES" && -z "$DEVCONTAINER_TYPE" ]]; then
-  export GPG_TTY="$(tty)"
-  unset SSH_AGENT_PID
-
-  if [ "{gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-  fi
-
-  gpgconf --launch gpg-agent
-  gpg-connect-agent updatestartuptty /by > dev/null 2>&1
-fi
+#if [[ -z "$REMOTE_CONTAINERS" && -z "$CODESPACES" && -z "$DEVCONTAINER_TYPE" ]]; then
+#  export GPG_TTY="$(tty)"
+#  unset SSH_AGENT_PID
+#
+#  if [ "{gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#  fi
+#
+#  gpgconf --launch gpg-agent
+#  gpg-connect-agent updatestartuptty /by > dev/null 2>&1
+#fi
 
 
 # =========================================================
@@ -55,9 +55,9 @@ export DOTFILES="$GHREPOS/dotfiles"
 export LAB="$GHREPOS/lab"
 export SCRIPTS="$DOTFILES/scripts"
 export ZETTELKASTEN="$GHREPOS/Zettelkasten"
+export XDG_CONFIG_HOME="$HOME"/.config
 
-
-# =========================================================
+ #=========================================================
 # Prompt
 # =========================================================
 
@@ -73,29 +73,14 @@ autoload -U promptinit; promptinit
 
 prompt pure
 
+zstyle :prompt:pure:path color cyan
+zstyle :prompt:pure:git:branch color yellow
+zstyle :prompt:pure:prompt:error color red
+zstyle :prompt:pure:prompt color green
 
 # enable zsh vi-mode
 bindkey -v
 export KEYTIMEOUT=1 # make switching between modes faster
-
-# =========================================================
-# Path
-# =========================================================
-
-path=(
-  $path
-  $HOME/bin
-  $HOME/.local/bin
-  /home/vscode/.local/bin     # Dev Container Specifics
-  /root/.local/bin            # Dev Container Sepcifics
-)
-
-# Remove duplicate entries and non-existent directories
-typeset -U path
-path=($^path(N-/))
-
-export PATH
-
 
 # =========================================================
 # Environment Variables
@@ -192,11 +177,10 @@ alias in="cd \$ZETTELKASTEN/0\ Inbox/"
 alias cdzk="cd \$ZETTELKASTEN"
 
 # Kubernetes
-#alias k='kubectl'
-
-#alias kgp='kubectl get pods'
-#alias kc='kubectx'
-#alias kn='kubens'
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kc='kubectx'
+alias kn='kubens'
 
 alias fgk='flux get kustomizations'
 
@@ -214,3 +198,5 @@ if command -v lsd > /dev/null ; then
   alias lla='ls -lgha'
   alias lt='ls --tree'
 fi
+
+

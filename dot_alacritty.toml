@@ -22,7 +22,7 @@ y = 0
 [general]
 
 # themes from https://github.com/alacritty/alacritty-theme
-import = ["~/.config/alacritty/themes/themes/gruvbox_dark.toml"]
+import = ["~/.config/alacritty/themes/themes/hyper.toml"]
 #[colors.primary]
 #background = '#0d1b1e' # Deep, dark teal
 #foreground = '#e0f2f1' # Very light, crisp seafoam white
