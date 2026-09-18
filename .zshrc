@@ -1,0 +1,201 @@
+# =========================================================
+# SSH
+# =========================================================
+
+
+# Using GPG + YubiKey for ssh.
+# Don't execute when in a dev container
+
+#if [[ -z "$REMOTE_CONTAINERS" && -z "$CODESPACES" && -z "$DEVCONTAINER_TYPE" ]]; then
+#  export GPG_TTY="$(tty)"
+#  unset SSH_AGENT_PID
+#
+#  if [ "{gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
+#  export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+#  fi
+#
+#  gpgconf --launch gpg-agent
+#  gpg-connect-agent updatestartuptty /by > dev/null 2>&1
+#fi
+
+# =========================================================
+# History
+# =========================================================
+
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=100000
+SAVEHIST=100000
+
+setopt APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_FIND_NO_DUPS
+
+
+# =========================================================
+# Shell behaviour
+# =========================================================
+
+setopt AUTOCD
+setopt NOBEEP
+setopt NUMERIC_GLOB_SORT  # sort file10 after file9, not after file1
+
+
+# =========================================================
+# Directories
+# =========================================================
+export REPOS="$HOME/Repos"
+export GITUSER="pcrepeau"
+export GHREPOS="$REPOS/github.com/$GITUSER"
+export DOTFILES="$GHREPOS/dotfiles"
+export LAB="$GHREPOS/lab"
+export SCRIPTS="$DOTFILES/scripts"
+export ZETTELKASTEN="$GHREPOS/Zettelkasten"
+export XDG_CONFIG_HOME="$HOME"/.config
+
+ #=========================================================
+# Prompt
+# =========================================================
+
+
+PURE_GIT_PULL=0
+
+if [[ "$OSTYPE" == darwin* ]]; then
+  fpath+=("$(brew --prefix)/share/zsh/site-functions")
+else
+  fpath+=($HOME/.zsh/pure)
+fi
+autoload -U promptinit; promptinit
+
+prompt pure
+
+zstyle :prompt:pure:path color cyan
+zstyle :prompt:pure:git:branch color yellow
+zstyle :prompt:pure:prompt:error color red
+zstyle :prompt:pure:prompt color green
+
+# enable zsh vi-mode
+bindkey -v
+export KEYTIMEOUT=1 # make switching between modes faster
+
+# =========================================================
+# Environment Variables
+# =========================================================
+
+
+if command -v nvim > /dev/null ; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+fi
+
+if command -v brave > /dev/null ; then
+  export BROWSER="brave"
+fi
+
+export LANG="en_US.UTF-8"
+
+
+# =========================================================
+# Mise
+# =========================================================
+
+
+if command -v mise > /dev/null ; then
+  eval "$($HOME/.local/bin/mise activate zsh)"
+fi
+
+
+# =========================================================
+# Completion
+# =========================================================
+
+
+autoload -Uz compinit && compinit
+
+if command -v fzf > /dev/null ; then
+  source <(fzf --zsh)
+fi
+
+if command -v flux > /dev/null ; then
+  source <(flux completion zsh)
+fi
+
+if command -v mise > /dev/null ; then
+  source <(mise completion zsh)
+fi
+
+
+# =========================================================
+# Aliases
+# =========================================================
+
+alias v=nvim
+alias clip='pbcopy'
+
+alias scripts='cd $SCRIPTS'
+alias c="clear"
+
+# Repos
+alias lab='cd $LAB'
+alias dot='cd $GHREPOS/dotfiles'
+alias repos='cd $REPOS'
+alias ghrepos='cd $GHREPOS'
+alias gr='ghrepos'
+
+# Homelab
+alias homelab='cd $GHREPOS/homelab/'
+alias hl='homelab'
+alias hlp='cd $GHREPOS/homelab-private/'
+alias hlps='cd $GHREPOS/homelab-private-staging/'
+alias hlpp='cd $GHREPOS/homelab-private-production/'
+
+# ls
+alias ls='ls --color=auto'
+#alias ls='ls -lathr'
+#alias la='exa -laghm@ --all --icons --git --color=always'
+
+# finds all files recursively and sorts by last modification, ignore hidden files.
+alias lastmod='find . -type f -not -path "*/\.*" -exec ls -lrt {} +'
+
+alias t='tmux'
+alias e='exit'
+
+# Azure
+alias sub='az account set -s'
+
+# Git
+alias gp='git pull'
+alias gs='git status'
+alias lg='lazygit'
+
+# Zettlekasten
+alias in="cd \$ZETTELKASTEN/0\ Inbox/"
+alias cdzk="cd \$ZETTELKASTEN"
+
+# Kubernetes
+alias k='kubectl'
+alias kgp='kubectl get pods'
+alias kc='kubectx'
+alias kn='kubens'
+
+alias fgk='flux get kustomizations'
+
+# Devpod
+alias ds='devpod ssh'
+
+if command -v bat > /dev/null ; then
+  alias cat="bat"
+fi
+
+if command -v lsd > /dev/null ; then
+  alias ls="lsd"
+  alias ll="ls -lgh"
+  alias la='ls -lathr'
+  alias lla='ls -lgha'
+  alias lt='ls --tree'
+fi
+
+eval "$(direnv hook zsh)"
