@@ -1,12 +1,12 @@
 return {
-  -- add gruvbox
-  { "bluz71/vim-moonfly-colors" },
-
-  -- Configure LazyVim to load gruvbox
+  {
+    "omacom-io/lumon.nvim",
+    priority = 1000,
+  },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "moonfly",
+      colorscheme = "lumon",
     },
   },
 }

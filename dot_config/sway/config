@@ -17,7 +17,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/.config/sway/images/groot_1.jpg fill
+output * bg ~/.config/sway/images/Lumon.jpg fill
 #
 # Example configuration:
 #
@@ -54,6 +54,7 @@ for_window [app_id="pavucontrol"] floating enable, resize set 600 400
 exec nm-applet --indicator
 exec blueman-applet
 exec ~/Repos/github.com/pcrepeau/scripts/keylight-control/keylight-controller
+#exec ~/.local/bin/sway-touchpad-toggle.sh
 workspace 2
 exec 1password
 
@@ -100,7 +101,7 @@ bindsym XF86Search exec $menu
 #Programs
 
 #bindsym $mod+z exec flatpak run org.telegram.desktop
-bindsym $mod+b exec /usr/bin/brave-browser-stable
+bindsym $mod+b exec /usr/bin/google-chrome-stable
 bindsym $mod+Shift+b firefox
 bindsym $mod+s exec flatpak run com.spotify.Client
 bindsym $mod+f exec thunar
