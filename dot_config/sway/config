@@ -103,7 +103,7 @@ bindsym XF86Search exec $menu
 #Programs
 
 #bindsym $mod+z exec flatpak run org.telegram.desktop
-bindsym $mod+b exec /usr/bin/google-chrome-stable
+bindsym $mod+b exec firefox
 bindsym $mod+Shift+b firefox
 bindsym $mod+s exec flatpak run com.spotify.Client
 bindsym $mod+f exec thunar

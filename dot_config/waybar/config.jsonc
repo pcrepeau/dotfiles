@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "group/media"],
     "modules-center": ["clock"],
-    "modules-right": ["sway/submap", "group/volume", "battery", "network", "cpu", "memory", "tray", "custom/power"],
+    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network", "cpu", "memory", "tray", "custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
@@ -113,7 +113,18 @@
 			"shutdown": "systemctl poweroff",
 			"reboot": "systemctl reboot",
 			"suspend": "systemctl suspend",
-			"hibernate": "systemctl hibernate"
 		  },
+    },
+    "power-profiles-daemon": {
+      //"font-family": "JetBrainsMono Nerd Font, Hack Nerd Font",
+      "format": "{icon}",
+      "tooltip-format": "Power profile: {profile}\nDriver: {driver}",
+      "tooltip": true,
+      "format-icons": {
+        "default": "",
+        "performance": "",
+        "balanced": "",
+        "power-saver": ""
+      },
     },
 }

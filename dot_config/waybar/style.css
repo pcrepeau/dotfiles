@@ -38,7 +38,8 @@ window#waybar {
 #memory,
 #volume,
 #custom-power,
-#tray {
+#tray,
+#power-profile-daemon {
   border-radius: 8px;
   padding: 5px 8px;
   background: @dark-8;
@@ -81,7 +82,7 @@ window#waybar {
 }
 
 #media {
-  color: #42ff9f;
+  color: @highlight;
   margin: 7px 0px 7px 80px;
 }
 
@@ -106,4 +107,7 @@ tooltip {
 
 tooltip label {
   color: white;
+}
+#power-profiles-daemon {
+  padding: 1 8px;
 }
