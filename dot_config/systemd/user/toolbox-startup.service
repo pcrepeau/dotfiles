@@ -1,0 +1,10 @@
+[Unit]
+Description=Start Toolbox OneDrive
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/toolbox run -c tools onedrive --monitor
+
+[Install]
+WantedBy=default.target
