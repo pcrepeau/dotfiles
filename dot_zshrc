@@ -103,9 +103,9 @@ export LANG="en_US.UTF-8"
 # =========================================================
 
 
-if command -v mise > /dev/null ; then
-  eval "$($HOME/.local/bin/mise activate zsh)"
-fi
+#if command -v mise > /dev/null ; then
+#  eval "$($HOME/.local/bin/mise activate zsh)"
+#fi
 
 
 # =========================================================
@@ -199,8 +199,7 @@ if command -v lsd > /dev/null ; then
   alias lt='ls --tree'
 fi
 
-eval "$(/home/pcrepeau/.local/bin/mise activate zsh)"
-
+eval "$(mise activate zsh)"
 # =========================================================
 # Aliases
 # =========================================================
