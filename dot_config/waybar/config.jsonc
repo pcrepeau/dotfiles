@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "group/media"],
     "modules-center": ["clock"],
-    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network", "cpu", "memory", "tray","custom/notification", "custom/power"],
+    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification", "custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
@@ -21,19 +21,18 @@
       "tooltip-format": "{controller_alias}\t{controller_address}",
       "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
       "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-      "on-click": "exec alacritty --title=bluetui -e bluetui"
     },
     "cpu": {
         "interval": 10,
         "format": " {}%",
         "max-length": 10,
-        "on-click": "exec alacritty --title=btop -e btop"
+        "on-click": "exec kitty --title=btop -e btop"
     },
     "memory": {
         "interval": 30,
         "format": " {percentage}%",
         "tooltip-format": "{used:0.1f}G/{total:0.1f}G used",
-        "on-click": "exec alacritty --title=htop -e htop",
+        "on-click": "exec kitty --title=htop -e htop",
     },
     "network": {
         "format": "",
@@ -41,20 +40,20 @@
         "format-ethernet":  "󰈀",
         "format-disconnected": "󰤭", //An empty format will hide the module.
         "tooltip-format": "{ifname} via {gwaddr} 󰈀",
-        "tooltip-format-wifi": "{essid} ({signalStrength}%) ",
-        "tooltip-format-ethernet": "{ifname} {ipaddr}/{cidr} 󰈀",
+        "tooltip-format-wifi": "{essid} ({signalStrengthApp}%) ",
+        "tooltip-format-ethernet": "{ifname} {linkSpeed} {ipaddr}/{cidr} 󰈀",
         "tooltip-format-disconnected": "󰖪",
         "max-length": 50,
     },
     "clock": {
-      "format": "󰥔 {:%a, %d. %b %I:%M %p}",
-      "tooltip-format": "<tt><small>{calendar}</small></tt>",
+      "format": "{:%a, %b %d %I:%M %p}",
+      "tooltip-format": "<big>{:%Y %B}</big>\n<tt><big>{calendar}</big></tt>",
       "calendar": {
         "format": {
-          "today": "<span color='#8ec07c'><b>{}</b></span>"
+          "today": "<span color='#88C0D0'><b>{}</b></span>"
         }
       },
-      "on-click": "exec chromium --app=https://calendar.google.com"
+      "on-click": "exec flatpak run org.mozilla.firefox --app=https://calendar.google.com"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",

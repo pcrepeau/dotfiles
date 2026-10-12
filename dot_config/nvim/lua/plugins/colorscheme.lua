@@ -1,12 +1,12 @@
 return {
   {
-    "sainnhe/gruvbox-material",
+    "EdenEast/nightfox.nvim",
     priority = 1000,
   },
   {
     "LazyVim/LazyVim",
     opts = {
-      colorscheme = "gruvbox-material",
+      colorscheme = "nordfox",
     },
   },
 }
