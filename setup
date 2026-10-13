@@ -13,7 +13,7 @@ if ! command -v chezmoi >/dev/null; then
 fi
 
 # Install Starship
-curl -sS https://starship.rs/install.sh | sh
+#curl -sS https://starship.rs/install.sh | sh
 
 #if [ ! -d "$HOME/.zsh" ]; then
 #  mkdir -p "$HOME/.zsh"
@@ -27,6 +27,6 @@ curl -sS https://starship.rs/install.sh | sh
 #mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
 #  git clone https://github.com/alacritty/alacritty-theme "$XDG_CONFIG_HOME"/alacritty/themes
 #fi
-echo 'eval "$(starship init zsh)"' >>~/.zshrc
+#echo 'eval "$(starship init zsh)"' >>~/.zshrc
 
 exit 0
