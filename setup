@@ -12,17 +12,21 @@ if ! command -v chezmoi >/dev/null; then
   sh -c "$(curl -fsLS get.chezmoi.io)" -- init --apply https://github.com/pcrepeau/dotfiles.git
 fi
 
-if [ ! -d "$HOME/.zsh" ]; then
-  mkdir -p "$HOME/.zsh"
-fi
+# Install Starship
+curl -sS https://starship.rs/install.sh | sh
 
-if [ ! -d "$HOME/.zsh/pure" ]; then
-  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
-fi
+#if [ ! -d "$HOME/.zsh" ]; then
+#  mkdir -p "$HOME/.zsh"
+#fi
 
-if command -v alacritty >/dev/null; then
-  #mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
-  git clone https://github.com/alacritty/alacritty-theme "$XDG_CONFIG_HOME"/alacritty/themes
-fi
+#if [ ! -d "$HOME/.zsh/pure" ]; then
+#  git clone https://github.com/sindresorhus/pure.git "$HOME/.zsh/pure"
+#fi
+
+#if command -v alacritty >/dev/null; then
+#mkdir -p "$XDG_CONFIG_HOME"/alacritty/themes
+#  git clone https://github.com/alacritty/alacritty-theme "$XDG_CONFIG_HOME"/alacritty/themes
+#fi
+echo 'eval "$(starship init zsh)"' >>~/.zshrc
 
 exit 0
