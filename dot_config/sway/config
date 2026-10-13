@@ -45,8 +45,8 @@ exec_always {
 #system idle settings
 exec_always swayidle -w \
 	timeout 600 'swaylock -f -i $lock_bg' \
-	timeout 1800 'swaymsg "output * power off"' \
-	resume 'swaymsg "output * power on"; killall -q waybar; waybar & ' \
+	timeout 1200 'swaymsg "output * power off"' \
+	resume 'swaymsg "output * power on"'' \
 	before-sleep 'swaylock -f -i $lock_bg' \
   timeout 7200 'systemctl suspend'
 

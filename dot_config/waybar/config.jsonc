@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "group/media"],
     "modules-center": ["clock"],
-    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification", "custom/power"],
+    "modules-right": ["idle_inhibitor","sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification", "custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
@@ -13,6 +13,14 @@
             "default": ["󰂎", "󰁺", "󰁻", "󰁼", "󰁽", "󰁾", "󰁿", "󰂀", "󰂁", "󰂂", "󰁹"],
             "charging": ["󰢟", "󰢜", "󰂆", "󰂇", "󰂈", "󰢝", "󰂉", "󰢞", "󰂊", "󰂋", "󰂅"]
         },
+    },
+    "idle_inhibitor": {
+	    "format": "{icon}",
+	    "format-icons": {
+		  "activated": "",
+		  "deactivated": ""
+	    },
+	    "timeout": 30.5
     },
     "bluetooth": {
       "format": "",
