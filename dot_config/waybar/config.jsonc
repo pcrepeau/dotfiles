@@ -1,8 +1,8 @@
 {
     "layer": "top",
     "modules-left": ["sway/workspaces", "group/media"],
-    "modules-center": ["clock"],
-    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification", "custom/power"],
+    "modules-center": ["clock","custom/weather"],
+    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification","idle_inhibitor", "custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
@@ -152,5 +152,13 @@
     "on-click": "sleep 0.1 && swaync-client -t -sw",
     "on-click-right": "sleep 0.1 && swaync-client -d -sw",
     "escape": true
-    }   
+    },
+    "custom/weather": {
+    "format": "{}",
+    "tooltip": true,
+    "return-type": "json",
+    "exec": "~/.config/waybar/scripts/weather/get_weather.rb",
+    "on-click": "~/.config/waybar/scripts/weather/get_weather.rb --next", // Cycle views
+    "interval": 900 // Every 15 minutes
+    },
 }

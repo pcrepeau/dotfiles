@@ -41,6 +41,8 @@ window#waybar {
 #custom-power,
 #tray,
 #idle_inhibitor,
+#custom-weather,
+#clock,
 #custom-notification{
   border-radius: 8px;
   padding: 5px 8px;
