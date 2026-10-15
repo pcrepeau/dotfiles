@@ -40,13 +40,13 @@ window#waybar {
 #volume,
 #custom-power,
 #tray,
+#idle_inhibitor,
 #custom-notification{
   border-radius: 8px;
   padding: 5px 8px;
   background: @dark-8;
   margin: 5px 10px 5px 0px;
 }
-
 #submap,
 #workspaces button.urgent {
   background: rgba(227, 81, 73, 1);

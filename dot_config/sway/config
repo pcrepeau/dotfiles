@@ -39,16 +39,29 @@ exec_always {
     gsettings set org.gnome.desktop.interface cursor-theme '$cursor_theme'
     gsettings set org.gnome.desktop.interface cursor-size $cursor_size
     gsettings set org.gnome.desktop.interface color-scheme 'prefer-dark'
-}
+    gsettings set org.gnome.desktop.interface gtk-theme "Nordic"
+    gsettings set org.gnome.desktop.wm.preferences theme "Nordic"
 
+}
+#Lockscreen
+set $lock_bg ~/.config/sway/images/Nord.png
+set $lock swaylock -f -i $lock_bg
 
 #system idle settings
-exec_always swayidle -w \
-	timeout 600 'swaylock -f -i $lock_bg' \
-	timeout 1200 'swaymsg "output * power off"' \
-	resume 'swaymsg "output * power on"'' \
-	before-sleep 'swaylock -f -i $lock_bg' \
-  timeout 7200 'systemctl suspend'
+exec_always pkill -x swayidle; exec swayidle -w \
+    timeout 300  '$lock' \
+    timeout 600 'swaymsg "output * power off"' \
+         resume  'swaymsg "output * power on"' \
+    timeout 7200 'systemctl suspend' \
+    before-sleep '$lock' \
+    after-resume 'swaymsg "output * power on"'
+
+# Don't idle while something is fullscreen (videos, games)
+for_window [class=".*"] inhibit_idle fullscreen
+for_window [app_id=".*"] inhibit_idle fullscreen
+
+bindswitch --reload --locked lid:on exec $lock
+
 
 # Toggle control center
 bindsym $mod+Shift+n exec swaync-client -t -sw
@@ -67,7 +80,7 @@ for_window [app_id="org.gnome.Calculator"] floating enable, resize 600 300
 
 
 
-#Autistart apps
+#Autostart apps
 
 exec swaync
 exec nm-applet --indicator
@@ -103,10 +116,6 @@ input "type:touchpad" {
 # Read `man 5 sway-input` for more information about this section.
 
 ### Key bindings
-#Lockscreen enable sleep 
-set $lock_bg ~/.config/sway/images/osaka-jade-bg.jpg
-set $lock 'swaylock -f -i $lock_bg'
-bindswitch --reload --locked lid:on exec $lock
 
 
 #Screenshot
@@ -127,10 +136,10 @@ bindsym XF86Search exec $menu
 #Programs
 
 #bindsym $mod+z exec flatpak run org.telegram.desktop
-bindsym $mod+b exec flatpak run org.mozilla.firefox
-bindsym $mod+alt+b brave-origin
+bindsym $mod+b exec brave-origin
+bindsym $mod+alt+b flatpak run org.mozilla.firefox
 bindsym $mod+s exec flatpak run com.spotify.Client
-bindsym $mod+f exec nautilus
+bindsym $mod+f exec thunar
 bindsym $mod+g exec steam
 
 # Basics:

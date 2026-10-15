@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "group/media"],
     "modules-center": ["clock"],
-    "modules-right": ["idle_inhibitor","sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification", "custom/power"],
+    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification", "custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
@@ -20,7 +20,6 @@
 		  "activated": "",
 		  "deactivated": ""
 	    },
-	    "timeout": 30.5
     },
     "bluetooth": {
       "format": "",
@@ -61,7 +60,7 @@
           "today": "<span color='#88C0D0'><b>{}</b></span>"
         }
       },
-      "on-click": "exec flatpak run org.mozilla.firefox --app=https://calendar.google.com"
+      "on-click": "exec brave-origin --app=https://calendar.google.com"
     },
     "pulseaudio": {
         "format": "{volume}% {icon}",
