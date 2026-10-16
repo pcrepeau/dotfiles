@@ -139,7 +139,7 @@ bindsym XF86Search exec $menu
 bindsym $mod+b exec brave-origin
 bindsym $mod+alt+b flatpak run org.mozilla.firefox
 bindsym $mod+s exec flatpak run com.spotify.Client
-bindsym $mod+f exec thunar
+bindsym $mod+f exec nautilus
 bindsym $mod+g exec steam
 
 # Basics:

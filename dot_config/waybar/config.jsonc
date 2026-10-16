@@ -2,7 +2,7 @@
     "layer": "top",
     "modules-left": ["sway/workspaces", "group/media"],
     "modules-center": ["clock","custom/weather"],
-    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network","bluetooth", "cpu", "memory", "tray","custom/notification","idle_inhibitor", "custom/power"],
+    "modules-right": ["sway/submap", "power-profiles-daemon", "group/volume", "battery", "network", "cpu", "memory", "tray","custom/notification","idle_inhibitor", "custom/power"],
     "hyprland/window": {
         "max-length": 50
     },
